@@ -1,14 +1,13 @@
 package com.example.apricotsharepluging
 
 /*
-    Desarrollador David shiro Beltran
+    Desarrollado por David shiro Beltran
     Fecha 02/01/2024
     Update ---------
 */
 
 import android.app.Activity
 import android.content.Intent
-import android.content.UriPermission
 import android.net.Uri
 import android.util.Log
 import android.view.View
@@ -18,7 +17,6 @@ import org.godotengine.godot.Godot
 import org.godotengine.godot.plugin.GodotPlugin
 import org.godotengine.godot.plugin.UsedByGodot
 import java.io.File
-import java.nio.file.FileSystem
 
 class ApricotSharePluging(godot: Godot?) : GodotPlugin(godot){
     private lateinit var aActivity: Activity
@@ -57,13 +55,13 @@ class ApricotSharePluging(godot: Godot?) : GodotPlugin(godot){
             var file:File = File(pathImg)
             var uri: Uri
             try {
-                uri = FileProvider.getUriForFile(aActivity, aActivity.packageName, file)
+                uri = FileProvider.getUriForFile(aActivity, aActivity.packageName+".fileprovider", file)
             }catch (e:IllegalArgumentException){
                 Log.d(Tag, "The selected file can't be shared " + pathImg)
                 return false
             }
             var shareText:Intent = Intent(Intent.ACTION_SEND)
-            shareText.setType("Image/*")
+            shareText.setType("image/*")
             shareText.putExtra(Intent.EXTRA_SUBJECT, subject)
             shareText.putExtra(Intent.EXTRA_TEXT, text)
             shareText.putExtra(Intent.EXTRA_TITLE, title)
@@ -71,6 +69,6 @@ class ApricotSharePluging(godot: Godot?) : GodotPlugin(godot){
             shareText.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             aActivity.startActivity(Intent.createChooser(shareText, title))
         }
-        return false
+        return true
     }
 }
