@@ -65,7 +65,7 @@ class ApricotSharePluging(godot: Godot?) : GodotPlugin(godot){
             shareText.putExtra(Intent.EXTRA_SUBJECT, subject)
             shareText.putExtra(Intent.EXTRA_TEXT, text)
             shareText.putExtra(Intent.EXTRA_TITLE, title)
-            shareText.putExtra(Intent.EXTRA_STREAM, pathImg)
+            shareText.putExtra(Intent.EXTRA_STREAM, uri)
             shareText.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             aActivity.startActivity(Intent.createChooser(shareText, title))
         }
