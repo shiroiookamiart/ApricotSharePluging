@@ -13,7 +13,7 @@ android {
         minSdk = 24
         targetSdk = 33
 
-        setProperty("archivesBaseName", "ApricotSharePluging")
+        setProperty("archivesBaseName", "GodotApricotSharePluging")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
